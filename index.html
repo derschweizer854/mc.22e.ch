@@ -34,13 +34,15 @@ header h1 {
     font-size: 12px;
 }
 
-/* INFO CONTAINER (Status + Discord) */
+/* INFO CONTAINER */
 .info-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
-    margin-bottom: 40px;
+    margin: 0 auto 50px auto;
+    padding: 0 40px;
+    max-width: 1200px; /* <<< WICHTIG: Abstand zum Rand */
 }
 
 /* SERVER STATUS */
@@ -49,7 +51,8 @@ header h1 {
     border: 3px solid #555;
     border-radius: 8px;
     padding: 20px;
-    width: 400px;
+    width: 100%;
+    max-width: 420px;
     text-align: center;
     color: #8dc63f;
 }
@@ -126,6 +129,15 @@ footer {
     margin-top: 40px;
     font-size: 10px;
 }
+
+/* ===== DESKTOP LAYOUT ===== */
+@media (min-width: 900px) {
+    .info-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
 </style>
 </head>
 
@@ -167,7 +179,7 @@ footer {
     <div class="downloads">
         <div class="download-card">
             <div>plugin</div>
-            <a href="https://drive.google.com/file/d/1K-23178U9HZF9_rkjoVECPc7PobVq3bT/view?usp=share_link" download>Download</a>
+            <a href="https://drive.google.com/file/d/1K-23178U9HZF9_rkjoVECPc7PobVq3bT/view?usp=share_link">Download</a>
         </div>
     </div>
 
@@ -175,20 +187,18 @@ footer {
     <div class="downloads">
         <div class="download-card">
             <div>map</div>
-            <a href="https://drive.google.com/file/d/1ab-TkB5-kMv445D2BL0dSjFUete2XymZ/view?usp=sharing" download>Download</a>
+            <a href="https://drive.google.com/file/d/1ab-TkB5-kMv445D2BL0dSjFUete2XymZ/view?usp=sharing">Download</a>
         </div>
     </div>
 
     <h2>Tools</h2>
-    <div class="downloads">
-        <!-- leer -->
-    </div>
+    <div class="downloads"></div>
 
     <h2>Assets</h2>
     <div class="downloads">
         <div class="download-card">
             <div>asset</div>
-            <a href="https://drive.google.com/file/d/1e4eDDpLq5TYtTt1ggcTadD1uvkB5e-t-/view?usp=sharing" download>Download</a>
+            <a href="https://drive.google.com/file/d/1e4eDDpLq5TYtTt1ggcTadD1uvkB5e-t-/view?usp=sharing">Download</a>
         </div>
     </div>
 </section>

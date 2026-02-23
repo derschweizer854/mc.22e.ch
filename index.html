@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>JailBank Minecraft server website</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+body {
+    background: linear-gradient(#2c3e50, #1a252f);
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #0d1117;
+    padding: 30px;
+    text-align: center;
+    border-bottom: 4px solid #e0c068;
+}
+
+header h1 {
+    color: #e0c068;
+    font-size: 24px;
+    text-shadow: 2px 2px #000;
+}
+
+.intro {
+    text-align: center;
+    padding: 25px;
+    font-size: 12px;
+}
+
+/* INFO CONTAINER (Status + Discord) */
+.info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* SERVER STATUS */
+#serverStatus {
+    background: #1b1b1b;
+    border: 3px solid #555;
+    border-radius: 8px;
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    color: #8dc63f;
+}
+
+#serverStatus h2 {
+    margin-top: 0;
+    color: #e0c068;
+}
+
+/* DISCORD BOX */
+.discord-box {
+    background: #1b1b1b;
+    border: 3px solid #555;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* SECTIONS */
+section {
+    padding: 20px;
+}
+
+h2 {
+    color: #8dc63f;
+    text-shadow: 1px 1px #000;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.downloads {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* DOWNLOAD CARDS */
+.download-card {
+    background: #1b1b1b;
+    border: 3px solid #555;
+    width: 200px;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.download-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #8dc63f;
+}
+
+.download-card a {
+    display: inline-block;
+    background: #8dc63f;
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.download-card a:hover {
+    background: #a6f056;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #0d1117;
+    border-top: 4px solid #e0c068;
+    margin-top: 40px;
+    font-size: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>JailBank Minecraft server website</h1>
+</header>
+
+<div class="intro">
+    Hey, das hier ist die Webseite von dem Minecraft server <strong>mc.22e.ch</strong>
+</div>
+
+<!-- STATUS + DISCORD -->
+<div class="info-container">
+
+    <div id="serverStatus">
+        <h2>Server Status</h2>
+        <p>Status: <span id="status">Lade...</span></p>
+        <p>MOTD: <span id="motd">Lade...</span></p>
+        <p>Online-Spieler: <span id="players">0</span></p>
+    </div>
+
+    <div class="discord-box">
+        <iframe 
+            src="https://discord.com/widget?id=1475573792418824313&theme=dark"
+            width="350"
+            height="500"
+            allowtransparency="true"
+            frameborder="0"
+            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+        </iframe>
+    </div>
+
+</div>
+
+<section>
+    <h2>Plugins</h2>
+    <div class="downloads">
+        <div class="download-card">
+            <div>plugin</div>
+            <a href="downloads/plugin.zip" download>Download</a>
+        </div>
+    </div>
+
+    <h2>Maps</h2>
+    <div class="downloads">
+        <div class="download-card">
+            <div>map</div>
+            <a href="downloads/map.zip" download>Download</a>
+        </div>
+    </div>
+
+    <h2>Tools</h2>
+    <div class="downloads">
+        <!-- leer -->
+    </div>
+
+    <h2>Assets</h2>
+    <div class="downloads">
+        <div class="download-card">
+            <div>asset</div>
+            <a href="downloads/asset.zip" download>Download</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 JailBank Minecraft Server
+</footer>
+
+<script>
+fetch("https://api.mcsrvstat.us/2/mc.22e.ch")
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById("status").innerText = data.online ? "Online ✅" : "Offline ❌";
+    document.getElementById("motd").innerText = data.motd.clean.join(" ");
+    document.getElementById("players").innerText =
+      data.players.online + "/" + data.players.max;
+  })
+  .catch(() => {
+    document.getElementById("status").innerText = "Fehler ❌";
+  });
+</script>
+
+</body>
+</html>
